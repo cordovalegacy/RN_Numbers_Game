@@ -1,20 +1,17 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+
+// !Components
+import { View, ImageBackground } from 'react-native'
+import StartGameScreen from './screens/StartGameScreen'
+
+// !Styles
+import { appStyles } from './styles/styles'
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+    <View style={appStyles.container}>
+      <ImageBackground style={appStyles.image} source={require('./assets/numbers_react.jpg')} resizeMode='cover'>
+        <StartGameScreen />
+      </ImageBackground>
     </View>
-  );
+  )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
