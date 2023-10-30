@@ -5,7 +5,6 @@ import PrimaryButton from "../components/PrimaryButton"
 
 // !Styles
 import { appStyles } from "../styles/styles"
-//practice with all the core components
 
 export default function StartGameScreen() {
     return (
