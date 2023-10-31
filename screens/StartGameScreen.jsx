@@ -5,9 +5,9 @@ import PrimaryButton from "../components/PrimaryButton"
 import { useState } from "react"
 
 // !Styles
-import { appStyles } from "../styles/styles"
+import { appStyles } from "../styles/appStyles"
 
-export default function StartGameScreen() {
+export default function StartGameScreen({ startGameHandler }) {
 
     const [numberInput, setNumberInput] = useState("")
     const [error, setError] = useState("")
@@ -33,7 +33,9 @@ export default function StartGameScreen() {
     }
 
     const submitNumberInput = () => {
-        numberValidator(numberInput)
+        if(numberValidator(numberInput)){
+            startGameHandler(numberInput)
+        }
         alertHandler()
     }
 
@@ -41,52 +43,53 @@ export default function StartGameScreen() {
         Alert.alert(
             "Success!!", //title
             "You have submitted a guess", //message
-                { //button
-                    text: "OK",
-                    onPress: () => console.log("OK Pressed")
-                }
+            [{ //button
+                text: "OK",
+                style: "destructive",
+                onPress: () => console.log("OK Pressed")
+            }]
         )
     }
 
-const numberValidator = (num) => {
-    if (num < 1 || num > 99) {
-        setError(errorText)
-        return
+    const numberValidator = (num) => {
+        if (num < 1 || num > 99) {
+            setError(errorText)
+            return false
+        }
+        else {
+            resetErrorState()
+            return true
+        }
     }
-    else {
-        resetErrorState()
-    }
-    resetNumberInput()
-}
 
-return (
-    <View style={appStyles.inputLayout}>
-        <TextInput
-            style={appStyles.input}
-            maxLength={2}
-            keyboardType={"number-pad"}
-            onChangeText={numberInputHandler}
-            value={numberInput}
-        />
-        <View style={appStyles.buttonLayout}>
-            <View style={appStyles.buttonViews}>
-                <PrimaryButton
-                    content={"Reset"}
-                    buttonStyles={appStyles.button}
-                    textStyles={appStyles.buttonText}
-                    onPress={hardReset}
-                />
+    return (
+        <View style={appStyles.inputLayout}>
+            <TextInput
+                style={appStyles.input}
+                maxLength={2}
+                keyboardType={"number-pad"}
+                onChangeText={numberInputHandler}
+                value={numberInput}
+            />
+            <View style={appStyles.buttonLayout}>
+                <View style={appStyles.buttonViews}>
+                    <PrimaryButton
+                        content={"Reset"}
+                        buttonStyles={appStyles.button}
+                        textStyles={appStyles.buttonText}
+                        onPress={hardReset}
+                    />
+                </View>
+                <View style={appStyles.buttonViews}>
+                    <PrimaryButton
+                        content={"Submit"}
+                        buttonStyles={appStyles.button}
+                        textStyles={appStyles.buttonText}
+                        onPress={submitNumberInput}
+                    />
+                </View>
             </View>
-            <View style={appStyles.buttonViews}>
-                <PrimaryButton
-                    content={"Submit"}
-                    buttonStyles={appStyles.button}
-                    textStyles={appStyles.buttonText}
-                    onPress={submitNumberInput}
-                />
-            </View>
+            <Text style={appStyles.errorText}>{error}</Text>
         </View>
-        <Text style={appStyles.errorText}>{error}</Text>
-    </View>
-)
+    )
 }

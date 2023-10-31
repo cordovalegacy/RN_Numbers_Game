@@ -16,12 +16,12 @@ export const appStyles = StyleSheet.create({
     inputLayout: {
         width: "90%",
         backgroundColor: "#000041",
-        height: 120,
-        paddingHorizontal: 10,
+        paddingHorizontal: 12,
         borderRadius: 10,
         borderWidth: 2,
         borderColor: "white",
-        flex: .20
+        flex: .20,
+        marginTop: 50
     },
     buttonLayout: {
         flex: 1,
