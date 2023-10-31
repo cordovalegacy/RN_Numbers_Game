@@ -14,7 +14,14 @@ export const appStyles = StyleSheet.create({
         backgroundColor: "#37474f"
     },
     inputLayout: {
-        width: "90%"
+        width: "90%",
+        backgroundColor: "#000041",
+        height: 120,
+        paddingHorizontal: 10,
+        borderRadius: 10,
+        borderWidth: 2,
+        borderColor: "white",
+        flex: .20
     },
     buttonLayout: {
         flex: 1,
@@ -24,7 +31,7 @@ export const appStyles = StyleSheet.create({
         width: "100%",
         margin: "auto"
     },
-    button: {
+    buttonViews: {
         flex: 1,
         height: 35,
         elevation: 4,
@@ -32,13 +39,17 @@ export const appStyles = StyleSheet.create({
         paddingVertical: 8,
         paddingHorizontal: 16,
         backgroundColor: "#ffc107",
-        borderRadius: 12,
-        marginHorizontal: 3
+        borderRadius: 16,
+        marginHorizontal: 3,
+        textAlign: "center"
     },
     buttonText: {
         textAlign: "center",
-        fontWeight: 10,
-        borderRadius: 12
+        fontSize: 20,
+        display: "flex",
+        flexDirection: "row",
+        alignSelf: "stretch",
+        width: "100%"
     },
     input: {
         borderBottomWidth: 2,
@@ -62,4 +73,10 @@ export const appStyles = StyleSheet.create({
         alignItems: "center",
         paddingTop: 50,
     },
+    errorText: {
+        color: "red",
+        fontWeight: 500,
+        paddingBottom: 10,
+        textAlign: "center"
+    }
 })
