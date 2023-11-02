@@ -1,30 +1,41 @@
 
 // !Packages
-import { Pressable, Text, View } from "react-native"
+import Title from "../components/Title"
+import { Text, View } from "react-native"
+import { useEffect, useState } from "react"
+import PrimaryButton from "../components/PrimaryButton"
 
 // !Styles
 import { gameStyles } from "../styles/gameStyles"
-import Title from "../components/Title"
-import { useEffect, useState } from "react"
 
-//next we want to write a function that generates a random number
-//then we will want to compare the input from the user with that random number
-//this will probably be inside a while loop because we need the value to persist
-
-export default function GameScreen({ userNumber }) {
+export default function GameScreen({ userNumber, setCurrentScreen }) {
 
     const [count, setCount] = useState(0)
+    const [error, setError] = useState("")
 
     useEffect(() => {
-        if(count == 0){
-            const randNum = generateRandomNumber(1, 99)
+        if (count == 5) {
+            return
         }
-        setCount(prevCount => prevCount + 1)
-        if(randNum < userNumber){
-            console.log("Try again")
+        let randNum
+        if (count == 0) {
+            randNum = generateRandomNumber(1, 99)
         }
-
-
+        if (randNum < userNumber) {
+            setCount(prevCount => prevCount + 1)
+            setError("Too Low")
+            console.log("Too Low")
+        }
+        else if (randNum > userNumber) {
+            setCount(prevCount => prevCount + 1)
+            setError("Too High")
+            console.log("Too High")
+        }
+        else {
+            console.log("You got it!!!")
+            setError("")
+        }
+        console.log("random number: ", randNum)
     }, [userNumber])
 
     const generateRandomNumber = (min, max) => {
@@ -36,19 +47,17 @@ export default function GameScreen({ userNumber }) {
 
     return (
         <View style={gameStyles.gameContainer}>
-            <Title>Opponent's Guess</Title>
+            <Title>{userNumber}</Title>
             <View>
-                <Text>Higher or Lower?</Text>
+                <Text style={gameStyles.title}>{error}</Text>
             </View>
-            <View>
-                <Pressable android_ripple={{ color: "#000041" }}>
-                    <Text>+</Text>
-                </Pressable>
-            </View>
-            <View>
-                <Pressable android_ripple={{ color: "#000041" }}>
-                    <Text>-</Text>
-                </Pressable>
+            <View style={gameStyles.buttonViews}>
+                <PrimaryButton
+                    content={"Try Again"}
+                    buttonStyles={gameStyles.button}
+                    textStyles={gameStyles.buttonText}
+                    onPress={() => setCurrentScreen(0)}
+                />
             </View>
         </View>
     )

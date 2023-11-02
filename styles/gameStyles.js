@@ -18,7 +18,28 @@ export const gameStyles = StyleSheet.create({
         textAlign: "center",
         borderWidth: 3,
         borderColor: "white",
-        padding: 5
-    }
+        padding: 5,
+        marginVertical: 5,
+        borderRadius: 10
+    },
+    buttonViews: {
+        marginTop: 10,
+        height: 35,
+        elevation: 4,
+        shadowRadius: 6,
+        paddingVertical: 8,
+        paddingHorizontal: 16,
+        backgroundColor: "#ffc107",
+        borderRadius: 16,
+        marginHorizontal: 3,
+        textAlign: "center"
+    },
+    buttonText: {
+        textAlign: "center",
+        fontSize: 20,
+        display: "flex",
+        flexDirection: "row",
+        width: "100%"
+    },
 })
 
