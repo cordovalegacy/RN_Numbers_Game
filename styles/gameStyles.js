@@ -12,5 +12,13 @@ export const gameStyles = StyleSheet.create({
         flex: .75,
         marginTop: 50
     },
+    title: {
+        color: "#ddb52f",
+        fontSize: 24,
+        textAlign: "center",
+        borderWidth: 3,
+        borderColor: "white",
+        padding: 5
+    }
 })
 
